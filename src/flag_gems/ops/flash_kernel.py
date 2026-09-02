@@ -753,8 +753,6 @@ def flash_fwd_kernel(
         tl.store(p_lse + row_idx, lse, mask=row_idx < seqlen_q)
 
 
-
-
 _flash_fwd_configs_refreshed = False
 
 
@@ -801,6 +799,7 @@ class _FlashFwdLazy:
 
 
 flash_fwd_kernel = _FlashFwdLazy(flash_fwd_kernel)
+
 
 @triton.jit(do_not_specialize=["seqlen_q", "seqlen_k"])
 def flash_fwd_bh_parallel_kernel():
